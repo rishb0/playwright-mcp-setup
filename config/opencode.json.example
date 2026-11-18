@@ -1,0 +1,84 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "servers": {
+      "playwright": {
+        "type": "local",
+        "command": [
+          "npx", "-y", "@playwright/mcp@latest",
+          "--browser", "chrome",
+          "--user-data-dir", "/home/YOUR_USERNAME/.cache/playwright-mcp/profile-chrome",
+          "--output-dir", "/home/YOUR_USERNAME/.cache/playwright-mcp/output",
+          "--timeout-action", "15000",
+          "--timeout-navigation", "90000",
+          "--console-level", "warning",
+          "--idle-timeout", "1800000",
+          "--caps", "network,storage"
+        ],
+        "timeout": { "startup": 120000, "execution": 1800000 }
+      },
+      "playwright-burp": {
+        "type": "local",
+        "command": [
+          "npx", "-y", "@playwright/mcp@latest",
+          "--browser", "chrome",
+          "--user-data-dir", "/home/YOUR_USERNAME/.cache/playwright-mcp/profile-burp",
+          "--output-dir", "/home/YOUR_USERNAME/.cache/playwright-mcp/output",
+          "--proxy-server", "http://127.0.0.1:8080",
+          "--proxy-bypass", "localhost,127.0.0.1,::1",
+          "--ignore-https-errors",
+          "--timeout-action", "15000",
+          "--timeout-navigation", "120000",
+          "--console-level", "warning",
+          "--idle-timeout", "1800000",
+          "--caps", "network,storage"
+        ],
+        "timeout": { "startup": 120000, "execution": 1800000 }
+      },
+      "playwright-scratch": {
+        "type": "local",
+        "disabled": true,
+        "command": [
+          "npx", "-y", "@playwright/mcp@latest",
+          "--browser", "chrome",
+          "--isolated",
+          "--headless",
+          "--output-dir", "/home/YOUR_USERNAME/.cache/playwright-mcp/output-scratch",
+          "--timeout-action", "15000",
+          "--timeout-navigation", "90000",
+          "--console-level", "warning",
+          "--idle-timeout", "900000",
+          "--caps", "network,storage"
+        ],
+        "timeout": { "startup": 120000, "execution": 1800000 }
+      },
+      "playwright-chromium": {
+        "type": "local",
+        "disabled": true,
+        "command": [
+          "npx", "-y", "@playwright/mcp@latest",
+          "--user-data-dir", "/home/YOUR_USERNAME/.cache/playwright-mcp/profile-chromium",
+          "--output-dir", "/home/YOUR_USERNAME/.cache/playwright-mcp/output",
+          "--timeout-action", "15000",
+          "--console-level", "warning",
+          "--idle-timeout", "1800000",
+          "--caps", "network,storage"
+        ]
+      },
+      "playwright-firefox": {
+        "type": "local",
+        "disabled": true,
+        "command": [
+          "npx", "-y", "@playwright/mcp@latest",
+          "--browser", "firefox",
+          "--user-data-dir", "/home/YOUR_USERNAME/.cache/playwright-mcp/profile-firefox",
+          "--output-dir", "/home/YOUR_USERNAME/.cache/playwright-mcp/output",
+          "--timeout-action", "15000",
+          "--console-level", "warning",
+          "--idle-timeout", "1800000",
+          "--caps", "network,storage"
+        ]
+      }
+    }
+  }
+}

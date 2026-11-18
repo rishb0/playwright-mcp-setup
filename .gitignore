@@ -1,0 +1,17 @@
+# Local artefacts produced by the browser server
+.playwright-mcp/
+output/
+output-scratch/
+
+# Backups written by setup.sh
+*.bak
+*.bak.*
+
+# Logs and temporary files
+*.log
+*.tmp
+.DS_Store
+
+# Editor and operating system noise
+.vscode/
+.idea/

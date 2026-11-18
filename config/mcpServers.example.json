@@ -1,0 +1,33 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y", "@playwright/mcp@latest",
+        "--browser", "chrome",
+        "--user-data-dir", "/home/YOUR_USERNAME/.cache/playwright-mcp/profile-chrome",
+        "--output-dir", "/home/YOUR_USERNAME/.cache/playwright-mcp/output",
+        "--timeout-action", "15000",
+        "--timeout-navigation", "90000",
+        "--console-level", "warning",
+        "--idle-timeout", "1800000",
+        "--caps", "network,storage"
+      ]
+    },
+    "playwright-burp": {
+      "command": "npx",
+      "args": [
+        "-y", "@playwright/mcp@latest",
+        "--browser", "chrome",
+        "--user-data-dir", "/home/YOUR_USERNAME/.cache/playwright-mcp/profile-burp",
+        "--output-dir", "/home/YOUR_USERNAME/.cache/playwright-mcp/output",
+        "--proxy-server", "http://127.0.0.1:8080",
+        "--proxy-bypass", "localhost,127.0.0.1,::1",
+        "--ignore-https-errors",
+        "--timeout-navigation", "120000",
+        "--idle-timeout", "1800000",
+        "--caps", "network,storage"
+      ]
+    }
+  }
+}
