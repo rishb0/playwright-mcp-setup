@@ -1,19 +1,41 @@
 # Playwright MCP Setup
 
-A tested, practical guide and installer that gives any AI agent a real browser.
+**This repository is a guide for setting up a browser for AI agents.**
 
-Configure it once and your agent can log in, click, fill forms, read pages, take
-screenshots, inspect network traffic and intercept requests, without wasting turns
-trying to find or launch a browser by itself.
+It explains how to install Microsoft's Playwright MCP server and connect it to your AI
+agent, so that the agent can drive a real browser. After the setup, the agent can open
+pages, click buttons, fill in forms, read the page, take screenshots, inspect network
+traffic, and intercept requests. It does all of this without spending turns trying to
+find or launch a browser by itself.
+
+The guide is written for two readers:
+
+- **A person**, who wants the steps in order, with the reason for each step.
+- **An AI agent**, which can read the guide and perform the entire setup alone.
+
+The repository also ships two scripts, so that the setup takes one command instead of
+twenty. `setup.sh` installs and configures everything. `verify.sh` checks the result and
+reports exactly what is wrong.
 
 The setup is designed for security work. It includes a direct browser for
-reconnaissance and a second, separate browser that sends every request through
+reconnaissance, and a second, separate browser that sends every request through
 Burp Suite or ZAP.
+
+## At a glance
+
+| Question | Answer |
+|---|---|
+| What is this repository? | A guide and installer that sets up a browser for AI agents. |
+| What does it install? | Microsoft's Playwright MCP server and the browser engines that it needs. |
+| Who is it for? | Anyone who wants an agent that can use a real browser, including security testers who need Burp Suite. |
+| What do I have to do? | Paste one line into your AI agent. The agent does the rest. |
+| Does it cost anything? | No. It is free and open source under the MIT License. |
 
 ---
 
 ## Table of contents
 
+0. [Install with one line](#0-install-with-one-line)
 1. [What this is](#1-what-this-is)
 2. [What this is not](#2-what-this-is-not)
 3. [Requirements](#3-requirements)
@@ -29,9 +51,45 @@ Burp Suite or ZAP.
 
 ---
 
+## 0. Install with one line
+
+Copy the line below and paste it into your AI agent. The agent clones this repository,
+reads the guide, installs everything, checks the result, and reports back. You do not
+need to run any command yourself.
+
+```text
+Clone https://github.com/rishb0/playwright-mcp-setup into my home directory, open that folder, read PLAYWRIGHT-MCP-SETUP.md, run ./setup.sh, then run ./verify.sh, fix everything it reports as FAIL without using sudo, and show me the output of opencode mcp list at the end.
+```
+
+That prompt is one line. It works with OpenCode, Claude Code, Codex, Cursor, and any
+other agent that can run shell commands.
+
+If your agent cannot reach GitHub, clone the repository yourself and paste the second
+line instead:
+
+```bash
+git clone https://github.com/rishb0/playwright-mcp-setup.git
+```
+
+```text
+Read PLAYWRIGHT-MCP-SETUP.md in this folder, run ./setup.sh, then run ./verify.sh, fix everything it reports as FAIL without using sudo, and show me the output of opencode mcp list at the end.
+```
+
+To see every action before anything changes, add `--dry-run` to the setup command.
+
+---
+
 ## 1. What this is
 
-This repository contains three things:
+This repository is a guide, not a program. It explains how to set up a browser for an
+AI agent, and it provides the scripts and configuration files that do the work.
+
+The browser is Microsoft's Playwright MCP server. This repository installs it,
+configures it for your client, and explains how to use it. The server code is
+downloaded from npm and maintained by Microsoft. This repository does not contain it
+and does not modify it.
+
+The repository contains three things:
 
 | File | Purpose |
 |---|---|
@@ -39,10 +97,8 @@ This repository contains three things:
 | `setup.sh` | An installer that performs the whole setup safely and can be run again at any time. |
 | `verify.sh` | A health check that tells you exactly what is missing or misconfigured. |
 
-It configures [Microsoft's Playwright MCP server](https://github.com/microsoft/playwright-mcp)
-for AI clients such as OpenCode, Claude Code, Codex, Cursor, VS Code and Claude
-Desktop. The server itself is downloaded and maintained by Microsoft. This
-repository does not contain or modify it.
+The supported clients are OpenCode, Claude Code, Codex, Cursor, VS Code and Claude
+Desktop. Section 4 of the guide shows the configuration for each one.
 
 The guide is based on measurements taken on a real machine, not on assumptions. It
 documents the failures that most published guides do not mention, including the
@@ -52,6 +108,8 @@ Suite's own Chromium build cannot be reused.
 ## 2. What this is not
 
 - It is not a fork of Playwright MCP and it is not affiliated with Microsoft.
+- It is not a general browser installer. The purpose is to give an AI agent a browser,
+  not to replace the browser that you use yourself.
 - It is not a replacement for the official documentation. It is a practical,
   opinionated setup that has been tested end to end.
 - It is not a security boundary. Playwright MCP drives a real browser with your
@@ -75,6 +133,9 @@ Optional but recommended for security work:
 | Google Chrome | Used by default because its fingerprint looks like a normal browser. |
 
 ## 4. Quick start
+
+The fastest route is section 0: paste one line into your agent and let it do the work.
+If you prefer to run the commands yourself, use these:
 
 ```bash
 git clone https://github.com/rishb0/playwright-mcp-setup.git
@@ -111,10 +172,7 @@ Open your agent inside this folder and paste one of the prompts below.
 ### 5.1 Install everything
 
 ```text
-Read PLAYWRIGHT-MCP-SETUP.md in this folder. Then run ./setup.sh and ./verify.sh,
-fix anything that verify.sh reports as FAIL, and show me the output of
-opencode mcp list at the end. Do not install the Python Playwright package and do
-not use sudo.
+Read PLAYWRIGHT-MCP-SETUP.md in this folder, run ./setup.sh, then run ./verify.sh, fix everything it reports as FAIL without using sudo, and show me the output of opencode mcp list at the end.
 ```
 
 ### 5.2 Check an existing installation
